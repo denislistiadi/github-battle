@@ -74,7 +74,7 @@ function ReposGrid({ repos }) {
               </ul>
             </Card>
 
-            <h4 className="header-lg center-text">#{index + 1}</h4>
+            {/* <h4 className="header-lg center-text">#{index + 1}</h4>
             <img
               className="avatar"
               src={avatar_url}
@@ -84,7 +84,7 @@ function ReposGrid({ repos }) {
               <a className="link" href={html_url}>
                 {login}
               </a>
-            </h2>
+            </h2> */}
           </li>
         );
       })}
