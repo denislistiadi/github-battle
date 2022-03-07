@@ -55,8 +55,8 @@ function ReposGrid({ repos }) {
               <ul className="card-list">
                 <li>
                   <Tooltip text="Github username">
-                  <FaUser color="rgb(255, 191, 116)" size={22} />
-                  <a href={`https://github.com/${login}`}>{login}</a>
+                    <FaUser color="rgb(255, 191, 116)" size={22} />
+                    <a href={`https://github.com/${login}`}>{login}</a>
                   </Tooltip>
                 </li>
                 <li>
@@ -73,18 +73,6 @@ function ReposGrid({ repos }) {
                 </li>
               </ul>
             </Card>
-
-            {/* <h4 className="header-lg center-text">#{index + 1}</h4>
-            <img
-              className="avatar"
-              src={avatar_url}
-              alt={`Avatar for ${login}`}
-            />
-            <h2 className="center-left">
-              <a className="link" href={html_url}>
-                {login}
-              </a>
-            </h2> */}
           </li>
         );
       })}
@@ -152,7 +140,7 @@ export default class Popular extends React.Component {
           onUpdateLanguage={this.updateLanguage}
         />
 
-        {this.isLoading() && <Loading text='Fetching Repos' speed={300} />}
+        {this.isLoading() && <Loading text="Fetching Repos" speed={300} />}
 
         {error && <p className="center-text error">{error}</p>}
 
