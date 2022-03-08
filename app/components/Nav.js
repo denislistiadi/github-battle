@@ -16,7 +16,7 @@ export default function Nav() {
                             <NavLink 
                                 to='/' exact
                                 activeStyle={activeStyle}
-                                className='nav-link'
+                                className={`${theme} nav-link`}
                             >
                                 Popular
                             </NavLink>
@@ -25,7 +25,7 @@ export default function Nav() {
                             <NavLink 
                                 to='/battle' 
                                 activeStyle={activeStyle}
-                                className='nav-link'
+                                className={`${theme} nav-link`}
                             >
                                 Battle
                             </NavLink>
