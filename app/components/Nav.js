@@ -11,7 +11,7 @@ export default function Nav() {
         <ThemeConsumer>
             {({ theme, toggleTheme }) => (
                 <nav className='row space-between'>
-                    <ul className="row nav-link">
+                    <ul className="row nav">
                         <li>
                             <NavLink 
                                 to='/' exact
