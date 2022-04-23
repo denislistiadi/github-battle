@@ -6,6 +6,7 @@ import {
   FaTimesCircle,
 } from "react-icons/fa";
 import PropTypes from "prop-types";
+import Results from "./Results";
 import ThemeContext from "../contexts/theme";
 import { Link } from "react-router-dom";
 
@@ -25,8 +26,8 @@ function Instructions() {
           />
         </li>
         <li>
-          <h3 className="header-sm">Batle</h3>
-          <FaFighterJet className={`bg-${theme}`} color="727272" size={140} />
+          <h3 className="header-sm">Battle</h3>
+          <FaFighterJet className={`bg-${theme}`} color="#727272" size={140} />
         </li>
         <li>
           <h3 className="header-sm">See the winners</h3>
@@ -41,20 +42,27 @@ function Instructions() {
   );
 }
 
-function PlayerInput({ onSubmit, label }:{onSubmit:(username:string)=>void, label:string}) {
+function PlayerInput({
+  onSubmit,
+  label,
+}: {
+  onSubmit: (username: string) => void;
+  label: string;
+}) {
   const [username, setUsername] = React.useState("");
 
-  const handleSubmit = (e:FormEvent) => {
+  const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
     onSubmit(username);
   };
 
-  const handleChange = (e:ChangeEvent<HTMLInputElement>) => setUsername(e.target.value);
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) =>
+    setUsername(event.target.value);
   const theme = React.useContext(ThemeContext);
 
   return (
-    <form className="column-player" onSubmit={handleSubmit}>
+    <form className="column player" onSubmit={handleSubmit}>
       <label htmlFor="username" className="player-label">
         {label}
       </label>
@@ -63,13 +71,13 @@ function PlayerInput({ onSubmit, label }:{onSubmit:(username:string)=>void, labe
           type="text"
           id="username"
           className={`input-${theme}`}
-          placeholder="Github username"
+          placeholder="github username"
           autoComplete="off"
           value={username}
           onChange={handleChange}
         />
         <button
-          className={`btn ${theme === "dark" ? "btn-light" : "btn-dark"}`}
+          className={`btn ${theme === "dark" ? "light-btn" : "dark-btn"}`}
           type="submit"
           disabled={!username}
         >
@@ -85,11 +93,19 @@ PlayerInput.propTypes = {
   label: PropTypes.string.isRequired,
 };
 
-function PlayerPreview({ username, onReset, label }:{username:string, onReset:()=>void, label:string}) {
+function PlayerPreview({
+  username,
+  onReset,
+  label,
+}: {
+  label: string;
+  username: string;
+  onReset: () => void;
+}) {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <div className="column-player">
+    <div className="column player">
       <h3 className="player-label">{label}</h3>
       <div className={`row bg-${theme}`}>
         <div className="player-info">
@@ -117,17 +133,19 @@ PlayerPreview.propTypes = {
 };
 
 export default function Battle() {
-  const [playerOne, setPlayerOne] = React.useState<string|null>(null);
-  const [playerTwo, setPlayerTwo] = React.useState<string|null>(null);
+  const [playerOne, setPlayerOne] = React.useState<string | null>(null);
+  const [playerTwo, setPlayerTwo] = React.useState<string | null>(null);
 
-  const handleSubmit = (id:string, player:string) =>
+  const handleSubmit = (id: string, player: string) =>
     id === "playerOne" ? setPlayerOne(player) : setPlayerTwo(player);
-  const handleReset = (id:string) =>
+
+  const handleReset = (id: string) =>
     id === "playerOne" ? setPlayerOne(null) : setPlayerTwo(null);
 
   return (
     <React.Fragment>
       <Instructions />
+
       <div className="players-container">
         <h1 className="center-text header-lg">Players</h1>
         <div className="row space-around">
@@ -146,7 +164,7 @@ export default function Battle() {
 
           {playerTwo === null ? (
             <PlayerInput
-              label="PlayerTwo"
+              label="Player Two"
               onSubmit={(player) => handleSubmit("playerTwo", player)}
             />
           ) : (
@@ -160,7 +178,7 @@ export default function Battle() {
 
         {playerOne && playerTwo && (
           <Link
-            className="btn btn-dark btn-space"
+            className="btn dark-btn btn-space"
             to={{
               pathname: "/battle/results",
               search: `?playerOne=${playerOne}&playerTwo=${playerTwo}`,
