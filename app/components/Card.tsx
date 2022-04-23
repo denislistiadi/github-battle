@@ -9,7 +9,7 @@ export default function Card({
   href,
   name,
   children,
-}:{header:string, subheader:string, avatar:string, href:string, name:string, children:React.ReactNode}) {
+}:{header:string, subheader?:string, avatar:string, href:string, name:string, children:React.ReactNode}) {
   const theme = React.useContext(ThemeContext);
 
   return (
